@@ -18,7 +18,7 @@ const useCourse = () => {
     const createCourse = async (title, code, creditUnit) => {
         try {
             const url = `${baseUrl}/course/create`;
-            const res = await axios.post(
+            const { data } = await axios.post(
                 url, {
                 data: {
                     title,
@@ -29,10 +29,10 @@ const useCourse = () => {
                     Authorization: `Bearer ${userToken}`
                 }
             })
-            return res;
+            return data;
         }
         catch (err) {
-            throw new Error(err)
+            throw new Error(err.response.data)
         }
     }
 
@@ -45,7 +45,7 @@ const useCourse = () => {
     const attachCoordinator = async (course, userId) => {
         try {
             const url = `${baseUrl}/course/attach-coordinator`;
-            const res = await axios.post(
+            const { data } = await axios.post(
                 url,
                 {
                     data: {
@@ -57,7 +57,7 @@ const useCourse = () => {
                     }
                 }
             )
-            return res;
+            return data;
         }
         catch (err) {
             throw new Error(err.response.data)
@@ -73,7 +73,7 @@ const useCourse = () => {
     const detachCoordinator = async (course, userId) => {
         try {
             const url = `${baseUrl}/course/detach-coordinator`;
-            const res = await axios.post(
+            const { data } = await axios.post(
                 url,
                 {
                     data: {
@@ -84,10 +84,10 @@ const useCourse = () => {
                         Authorization: `Bearer ${userToken}`
                     }
                 })
-            return res;
+            return data;
         }
         catch (err) {
-            throw new Error(err)
+            throw new Error(err.response.data)
         }
     }
 
@@ -129,11 +129,12 @@ const useCourse = () => {
     const deleteCourse = async (courseId) => {
         try {
             const url = `${baseUrl}/course/update/${courseId}`;
-            return await axios.delete(url, {
+            const { data } = await axios.delete(url, {
                 headers: {
                     Authorization: `Bearer ${userToken}`
                 }
             });
+            return data;
         }
         catch (err) {
             throw new Error(err.response.data)
@@ -149,11 +150,12 @@ const useCourse = () => {
     const getCourse = async (pageNumber, size) => {
         try {
             const url = `${baseUrl}/course/all?page=${pageNumber}&size=${size}`;
-            return await axios.get(url, {
+            const { data } = await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${userToken}`
                 }
             });
+            return data
         }
         catch (err) {
             throw new Error(err.response.data)
@@ -168,11 +170,12 @@ const useCourse = () => {
     const getCoordinatorCourse = async (userId) => {
         try {
             const url = `${baseUrl}/course/for-coordinator=${userId}`;
-            return await axios.get(url, {
+            const { data } = await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${userToken}`
                 }
             });
+            return data
         }
         catch (err) {
             throw new Error(err.response.data)

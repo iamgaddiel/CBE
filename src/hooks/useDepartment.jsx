@@ -4,7 +4,13 @@ import { userAtom, userTokenAtom } from '../../recoilStates';
 const useDepartment = () => {
     const userToken = useRecoilValue(userTokenAtom)
 
-
+    /**
+     * 
+     * @param {*} name 
+     * @param {*} faculty 
+     * @param {*} code 
+     * @returns 
+     */
     const createDepartment = async (name, faculty, code) => {
         try {
             const url = `${baseUrl}/department/create`;
@@ -25,6 +31,13 @@ const useDepartment = () => {
         }
     }
 
+    /**
+     * 
+     * @param {*} name 
+     * @param {*} faculty 
+     * @param {*} code 
+     * @returns 
+     */
     const updateDependent = async (name, faculty, code) => {
         try {
             const url = `${baseUrl}/department/create`;
@@ -45,6 +58,11 @@ const useDepartment = () => {
         }
     }
 
+    /**
+     * 
+     * @param {*} id 
+     * @returns 
+     */
     const deleteDependent = async (id) => {
         try {
             const url = `${baseUrl}/department/delete/${id}`;
@@ -60,6 +78,10 @@ const useDepartment = () => {
         }
     }
 
+    /**
+     * @param {*} facultyId 
+     * @returns 
+     */
     const getDependent = async (facultyId) => { 
         try {
             const url = `${baseUrl}/department/all?faculty=${facultyId}`;
