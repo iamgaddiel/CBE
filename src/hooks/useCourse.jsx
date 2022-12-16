@@ -5,7 +5,7 @@ import { userAtom, userTokenAtom } from '../../recoilStates';
 
 const useCourse = () => {
     const [baseUrl, _] = useState(process.env.BASE_URL)
-    const authUser = useRecoilValue(userAtom)
+    // const authUser = useRecoilValue(userAtom)x
     const userToken = useRecoilValue(userTokenAtom)
 
 

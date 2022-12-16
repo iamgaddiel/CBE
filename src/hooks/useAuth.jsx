@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useRecoilState } from 'recoil'
 
-import { userAtom, userTokenAtom } from '../../recoilStates'
+import { userAtom, userTokenAtom } from '../recoilStates'
 
 
 const useAuth = () => {
@@ -21,10 +21,10 @@ const useAuth = () => {
     const login = async (username, password) => {
         try {
             const url = `${baseUrl}/auth/login`
-            const res = await axios.post(url, { username, password });
+            const { data } = await axios.post(url, { username, password });
             setUserToken(res.data.jwt)
             setToken(res.data.jwt)
-            return res;
+            return data;
         }
         catch (err) {
             throw new Error(err)
