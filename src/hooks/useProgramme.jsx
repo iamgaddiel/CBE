@@ -1,24 +1,22 @@
 import React from 'react'
 import { userAtom, userTokenAtom } from '../../recoilStates';
 
-const useDepartment = () => {
+const useProgramme = () => {
     const userToken = useRecoilValue(userTokenAtom)
 
     /**
      * 
-     * @param {*} name 
-     * @param {*} faculty 
-     * @param {*} code 
+     * @param {string} name 
+     * @param {number} department 
      * @returns 
      */
-    const createDepartment = async (name, faculty, code) => {
+    const createProgramme = async (name, department) => {
         try {
-            const url = `${baseUrl}/department/create`;
+            const url = `${baseUrl}/programme/create`;
             const { data } = await axios.post(url, {
                 data: {
                     name,
-                    faculty,
-                    code
+                    department
                 },
                 headers: {
                     Authorization: `Bearer ${userToken}`
@@ -34,19 +32,18 @@ const useDepartment = () => {
     /**
      * 
      * @param {string} name 
-     * @param {number} faculty 
-     * @param {string} code 
-     * @param {number} id 
+     * @param {number} department 
+     * @param {number} id
+
      * @returns 
      */
-    const updateDepartment = async (name, faculty, code, id) => {
+    const updateDepartment = async (name, department, id) => {
         try {
-            const url = `${baseUrl}/department/update/${id}`;
+            const url = `${baseUrl}/${baseUrl}/update/${id}`;
             const { data } = await axios.put(url, {
                 data: {
                     name,
-                    faculty,
-                    code
+                    department
                 },
                 headers: {
                     Authorization: `Bearer ${userToken}`
@@ -61,12 +58,12 @@ const useDepartment = () => {
 
     /**
      * 
-     * @param {*} id 
+     * @param {number} programme 
      * @returns 
      */
-    const deleteDepartment = async (id) => {
+    const deleteProgramme = async (c) => {
         try {
-            const url = `${baseUrl}/department/delete/${id}`;
+            const url = `${baseUrl}/programme/delete/${id}`;
             const { data } = await axios.put(url, {
                 headers: {
                     Authorization: `Bearer ${userToken}`
@@ -80,12 +77,12 @@ const useDepartment = () => {
     }
 
     /**
-     * @param {*} facultyId 
+     * @param {number} departmentId 
      * @returns 
      */
-    const getDepartment = async (facultyId) => { 
+    const getProgramme = async (departmentId) => {
         try {
-            const url = `${baseUrl}/department/all?faculty=${facultyId}`;
+            const url = `${baseUrl}/department/all?faculty=${departmentId}`;
             const { data } = await axios.put(url, {
                 headers: {
                     Authorization: `Bearer ${userToken}`
@@ -97,13 +94,9 @@ const useDepartment = () => {
             throw new Error(err.response.data)
         }
     }
-
     return {
-        createDepartment,
-        updateDepartment,
-        deleteDepartment,
-        getDepartment
+
     }
 }
 
-export default useDepartment
+export default useProgramme
